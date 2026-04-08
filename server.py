@@ -34,12 +34,32 @@ print(lines)
 request_line = lines[0]
 print("----- REQUEST LINE -----")
 print(request_line)
-#---Parse request line---
-request_line_parts = request_line.split()
-method = request_line_parts[0]
-path = request_line_parts[1]
-version = request_line_parts[2]
-print (f"Method = {method} \n Path = {path} \n HTTP Version = {version} ")
+method = ""
+path = ""
+version = ""
+malformed_request = False
+if request_line == "":
+    print("Error: Request line is missing")
+    malformed_request = True
+else:
+    
+    request_line_parts = request_line.split()
+
+    print("----- REQUEST LINE PARTS -----")
+    print(request_line_parts)
+    if len(request_line_parts) != 3:
+        print("Error: Malformed request line")
+        malformed_request = True
+    else:
+        method = request_line_parts[0]
+        path = request_line_parts[1]
+        version = request_line_parts[2]
+
+        print("----- PARSED REQUEST LINE -----")
+        print("Method:", method)
+        print("Path:", path)
+        print("Version:", version)
+
 
 
 #Finding Where the Blank Line is in the HTTP request Body 
@@ -66,7 +86,7 @@ for header_line in header_lines:
 print("Host:", headers.get("Host"))
 print("User-Agent:", headers.get("User-Agent"))
 print("Accept:", headers.get("Accept"))
-       
+
 #Extracting the Body
 body_lines = lines[blank_line_index + 1:]
 body = "\r\n".join(body_lines)
@@ -74,6 +94,17 @@ body = "\r\n".join(body_lines)
 print("----- BODY -----")
 print(body)
 
+#Create request data structure
+request_data = {
+    "method": method,
+    "path": path,
+    "version": version,
+    "headers": headers,
+    "body": body
+}
+
+print("----- REQUEST DATA STRUCTURE -----")
+print(request_data) 
 # build HTTP response
 response = (
     "HTTP/1.1 200 OK\r\n"
