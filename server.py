@@ -105,10 +105,17 @@ request_data = {
 
 print("----- REQUEST DATA STRUCTURE -----")
 print(request_data) 
-# build HTTP response
-# build HTTP response
+
+# -------------------- STATUS CODE → REASON MAP --------------------
+status_reasons = {
+    200: "OK",
+    404: "Not Found",
+    400: "Bad Request"
+}
+
+# -------------------- ROUTING + RESPONSE DATA --------------------
 if malformed_request:
-    status_line = "HTTP/1.1 400 Bad Request"
+    status_code = 400
     content_type = "text/plain"
     response_body = "Bad Request"
 
@@ -117,25 +124,31 @@ else:
     path = request_data["path"]
 
     if method == "GET" and path == "/":
-        status_line = "HTTP/1.1 200 OK"
+        status_code = 200
         content_type = "text/plain"
         response_body = "Home route"
 
     elif method == "GET" and path == "/about":
-        status_line = "HTTP/1.1 200 OK"
+        status_code = 200
         content_type = "text/plain"
         response_body = "About route"
 
     elif method == "GET" and path == "/api/hello":
-        status_line = "HTTP/1.1 200 OK"
+        status_code = 200
         content_type = "application/json"
         response_body = '{"message": "Hello"}'
 
     else:
-        status_line = "HTTP/1.1 404 Not Found"
+        status_code = 404
         content_type = "text/plain"
         response_body = "Not Found"
 
+# -------------------- BUILD STATUS LINE --------------------
+version = "HTTP/1.1"
+reason_phrase = status_reasons[status_code]
+status_line = f"{version} {status_code} {reason_phrase}"
+
+# -------------------- BUILD FULL HTTP RESPONSE --------------------
 response = (
     f"{status_line}\r\n"
     f"Content-Type: {content_type}\r\n"
