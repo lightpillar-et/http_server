@@ -106,13 +106,23 @@ request_data = {
 print("----- REQUEST DATA STRUCTURE -----")
 print(request_data) 
 # build HTTP response
-response = (
-    "HTTP/1.1 200 OK\r\n"
-    "Content-Type: text/plain\r\n"
-    "Content-Length: 5\r\n"
-    "\r\n"
-    "Hello"
-)
+if malformed_request:
+    response_body = "Bad Request"
+    response = (
+        "HTTP/1.1 400 Bad Request\r\n"
+        "Content-Type: text/plain\r\n"
+        f"Content-Length: {len(response_body)}\r\n"
+        "\r\n"
+        f"{response_body}"
+    )
+else:
+    response = (
+        "HTTP/1.1 200 OK\r\n"
+        "Content-Type: text/plain\r\n"
+        "Content-Length: 5\r\n"
+        "\r\n"
+        "Hello"
+    )
 
 # send response (string → bytes)
 connection_socket.send(response.encode())
