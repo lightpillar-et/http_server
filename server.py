@@ -56,7 +56,17 @@ print(blank_line_index)
 header_lines = lines[1: blank_line_index]
 print("----- HEADER LINES -----")
 print(header_lines)
+# Turning the Header into Dictionarry
+headers = {}
+for header_line in header_lines:
+    if ":" in header_line:
+        name, value = header_line.split(":", 1)
+        headers[name] = value.strip()
 
+print("Host:", headers.get("Host"))
+print("User-Agent:", headers.get("User-Agent"))
+print("Accept:", headers.get("Accept"))
+       
 #Extracting the Body
 body_lines = lines[blank_line_index + 1:]
 body = "\r\n".join(body_lines)
