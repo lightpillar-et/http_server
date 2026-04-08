@@ -26,7 +26,7 @@ print(raw_request_data)
 # decode bytes → string
 request = raw_request_data.decode()
 
-#  split the raw request into parts
+#----- HTTP Request Parsing-----
 lines = request.split("\r\n")
 
 print("----- REQUEST LINES -----")
