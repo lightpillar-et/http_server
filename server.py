@@ -34,6 +34,13 @@ print(lines)
 request_line = lines[0]
 print("----- REQUEST LINE -----")
 print(request_line)
+#---Parse request line---
+request_line_parts = request_line.split()
+method = request_line_parts[0]
+path = request_line_parts[1]
+version = request_line_parts[2]
+print (f"Method = {method} \n Path = {path} \n HTTP Version = {version} ")
+
 
 #Finding Where the Blank Line is in the HTTP request Body 
 blank_line_index =0
