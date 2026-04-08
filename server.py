@@ -106,23 +106,43 @@ request_data = {
 print("----- REQUEST DATA STRUCTURE -----")
 print(request_data) 
 # build HTTP response
+# build HTTP response
 if malformed_request:
+    status_line = "HTTP/1.1 400 Bad Request"
+    content_type = "text/plain"
     response_body = "Bad Request"
-    response = (
-        "HTTP/1.1 400 Bad Request\r\n"
-        "Content-Type: text/plain\r\n"
-        f"Content-Length: {len(response_body)}\r\n"
-        "\r\n"
-        f"{response_body}"
-    )
+
 else:
-    response = (
-        "HTTP/1.1 200 OK\r\n"
-        "Content-Type: text/plain\r\n"
-        "Content-Length: 5\r\n"
-        "\r\n"
-        "Hello"
-    )
+    method = request_data["method"]
+    path = request_data["path"]
+
+    if method == "GET" and path == "/":
+        status_line = "HTTP/1.1 200 OK"
+        content_type = "text/plain"
+        response_body = "Home route"
+
+    elif method == "GET" and path == "/about":
+        status_line = "HTTP/1.1 200 OK"
+        content_type = "text/plain"
+        response_body = "About route"
+
+    elif method == "GET" and path == "/api/hello":
+        status_line = "HTTP/1.1 200 OK"
+        content_type = "application/json"
+        response_body = '{"message": "Hello"}'
+
+    else:
+        status_line = "HTTP/1.1 404 Not Found"
+        content_type = "text/plain"
+        response_body = "Not Found"
+
+response = (
+    f"{status_line}\r\n"
+    f"Content-Type: {content_type}\r\n"
+    f"Content-Length: {len(response_body)}\r\n"
+    "\r\n"
+    f"{response_body}"
+)
 
 # send response (string → bytes)
 connection_socket.send(response.encode())
