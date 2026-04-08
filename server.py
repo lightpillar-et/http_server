@@ -143,7 +143,7 @@ else:
         content_type = "text/plain"
         response_body = "Not Found"
 
-# -------------------- BUILD STATUS LINE --------------------
+# --------------------BUILD STATUS LINE --------------------
 version = "HTTP/1.1"
 reason_phrase = status_reasons[status_code]
 status_line = f"{version} {status_code} {reason_phrase}"
