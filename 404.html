@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTTP/1.1 404 Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 18px;
+            background: #000000;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .frame {
+            border: 1px solid #aa0000;
+            padding: 12px;
+        }
+
+        .title {
+            color: #ffffff;
+            background: #330000;
+            padding: 6px 8px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #ff8080;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        pre {
+            margin: 0 0 12px 0;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .line {
+            margin: 0 0 8px 0;
+        }
+
+        a {
+            color: #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="title">PYTHON HTTP SERVER</div>
+        <div class="status">HTTP/1.1 404 Not Found</div>
+        <pre>REQUEST RECEIVED
+GET /unknown
+ROUTE MATCHED: none
+HANDLER: handle_not_found
+RESULT: 404 NOT FOUND
+CONTENT-TYPE: text/html
+
+NO ROUTE FOUND.</pre>
+
+        <div class="line">CURRENT STATE: PATH NOT FOUND</div>
+        <div class="line">NEXT ROUTES: <a href="/">/</a> | <a href="/about">/about</a></div>
+    </div>
+</body>
+</html>

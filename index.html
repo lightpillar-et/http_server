@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTTP/1.1 200 OK</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 18px;
+            background: #000000;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .frame {
+            border: 1px solid #00aa00;
+            padding: 12px;
+        }
+
+        .title {
+            color: #ffffff;
+            background: #003300;
+            padding: 6px 8px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #ffff00;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        pre {
+            margin: 0 0 12px 0;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .line {
+            margin: 0 0 8px 0;
+        }
+
+        a {
+            color: #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="title">PYTHON HTTP SERVER</div>
+        <div class="status">HTTP/1.1 200 OK</div>
+        <pre>REQUEST RECEIVED
+GET /
+ROUTE MATCHED: /
+HANDLER: handle_home
+RESULT: 200 OK
+CONTENT-TYPE: text/html
+
+PAGE OPENED SUCCESSFULLY.</pre>
+
+        <div class="line">CURRENT STATE: HOME PAGE RENDERED</div>
+        <div class="line">NEXT ROUTES: <a href="/about">/about</a> | <a href="/api/hello">/api/hello</a></div>
+    </div>
+</body>
+</html>

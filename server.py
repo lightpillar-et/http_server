@@ -61,19 +61,29 @@ def log_request(request_data, malformed_request, status_code):
 def send_response(connection_socket, response):
     connection_socket.send(response.encode())
 
-
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((host, port))
 server_socket.listen()
 
 print(f"Server is listening on {host}:{port}")
 
-connection_socket, client_address = accept_connection(server_socket)
-request_text = read_request(connection_socket)
-request_data, malformed_request = parse_request(request_text)
-status_code, content_type, response_body = route_request(request_data, malformed_request)
-log_request(request_data, malformed_request, status_code)
-response = build_response(status_code, content_type, response_body)
-send_response(connection_socket, response)
-connection_socket.close()
-server_socket.close()
+try:
+    while True:
+        connection_socket, client_address = accept_connection(server_socket)
+        request_text = read_request(connection_socket)
+        request_data, malformed_request = parse_request(request_text)
+        status_code, content_type, response_body = route_request(request_data, malformed_request)
+
+        log_request(request_data, malformed_request, status_code)
+
+        response = build_response(status_code, content_type, response_body)
+        send_response(connection_socket, response)
+
+        connection_socket.close()
+
+except KeyboardInterrupt:
+    print("\nServer stopped by user.")
+
+finally:
+    server_socket.close()

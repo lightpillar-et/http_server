@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP/1.1 200 OK</title>
+    <style>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>HTTP/1.1 200 OK</title>
+            <style>
+                body {
+                    margin: 0;
+                    padding: 18px;
+                    background: #000000;
+                    color: #00ff00;
+                    font-family: "Courier New", Courier, monospace;
+                }
+
+                .frame {
+                    border: 1px solid #00aa00;
+                    padding: 12px;
+                }
+
+                .title {
+                    color: #ffffff;
+                    background: #003300;
+                    padding: 6px 8px;
+                    margin-bottom: 12px;
+                    font-weight: bold;
+                }
+
+                .status {
+                    color: #ffff00;
+                    margin-bottom: 12px;
+                    font-weight: bold;
+                }
+
+                pre {
+                    margin: 0 0 12px 0;
+                    white-space: pre-wrap;
+                    line-height: 1.5;
+                    font-size: 14px;
+                }
+
+                .line {
+                    margin: 0 0 8px 0;
+                }
+
+                a {
+                    color: #00ffff;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="frame">
+                <div class="title">PYTHON HTTP SERVER</div>
+                <div class="status">HTTP/1.1 200 OK</div>
+                <pre>REQUEST RECEIVED
+        GET /about
+        ROUTE MATCHED: /about
+        HANDLER: handle_about
+        RESULT: 200 OK
+        CONTENT-TYPE: text/html
+
+        ABOUT PAGE DELIVERED.</pre>
+
+                <div class="line">CURRENT STATE: ABOUT PAGE RENDERED</div>
+                <div class="line">NEXT ROUTES: <a href="/">/</a> | <a href="/api/hello">/api/hello</a></div>
+            </div>
+        </body>
+        </html>
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+        }
+
+        .lead {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 62ch;
+            font-size: 1.02rem;
+        }
+
+        .response-box {
+            margin-top: 26px;
+            padding: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 18px;
+            background: var(--panel-soft);
+        }
+
+        .response-meta {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .meta {
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .meta span {
+            display: block;
+        }
+
+        .meta-label {
+            color: var(--muted);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .meta-value {
+            font-family: var(--mono);
+            font-size: 0.95rem;
+        }
+
+        pre {
+            margin: 0;
+            padding: 18px;
+            border-radius: 16px;
+            background: rgba(5, 10, 20, 0.55);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>HTTP/1.1 200 OK</title>
+                <style>
+                    body {
+                        background: #c0c0c0;
+                        color: #000000;
+                        font-family: "Courier New", Courier, monospace;
+                        margin: 0;
+                        padding: 16px;
+                    }
+
+                    table.outer {
+                        width: 100%;
+                        border: 2px solid #000080;
+                        background: #ffffff;
+                        border-collapse: collapse;
+                    }
+
+                    td {
+                        border: 1px solid #808080;
+                        vertical-align: top;
+                        padding: 12px;
+                    }
+
+                    .banner {
+                        background: #000080;
+                        color: #ffffff;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        padding: 8px 10px;
+                    }
+
+                    .status {
+                        background: #000000;
+                        color: #00ff00;
+                        font-weight: bold;
+                        padding: 8px 10px;
+                    }
+
+                    .section-title {
+                        color: #000080;
+                        font-weight: bold;
+                        margin-bottom: 8px;
+                    }
+
+                    .small {
+                        font-size: 13px;
+                        line-height: 1.5;
+                    }
+
+                    pre {
+                        background: #f4f4f4;
+                        border: 1px solid #808080;
+                        padding: 10px;
+                        margin: 0;
+                        white-space: pre-wrap;
+                        font-size: 13px;
+                        line-height: 1.5;
+                    }
+
+                    a {
+                        color: #0000ff;
+                    }
+
+                    .footer {
+                        background: #e0e0e0;
+                        font-size: 12px;
+                    }
+                </style>
+            </head>
+            <body>
+                <table class="outer" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="banner" colspan="2">PYTHON HTTP SERVER RESPONSE</td>
+                    </tr>
+                    <tr>
+                        <td class="status" colspan="2">HTTP/1.1 200 OK</td>
+                    </tr>
+                    <tr>
+                        <td width="55%">
+                            <div class="section-title">About this page</div>
+                            <div class="small">
+                                This page uses a late-90s server look on purpose. It is plain, direct, and easy to read.
+                                The style is meant to make the response feel like something the server returned, not like a modern app.
+                                <br><br>
+                                The point is to help you understand the code path: request comes in, router selects a handler,
+                                and the server sends a response back.
+                            </div>
+
+                            <br>
+
+                            <div class="section-title">How it works</div>
+                            <ul class="small">
+                                <li>The browser sends a request to <strong>/</strong>.</li>
+                                <li>The server reads the request line and headers.</li>
+                                <li>The router chooses the matching handler.</li>
+                                <li>The response body is returned as HTML.</li>
+                            </ul>
+
+                            <br>
+
+                            <div class="section-title">Navigation</div>
+                            <a href="/">Back to Home</a> | <a href="/api/hello">View JSON Response</a>
+                        </td>
+                        <td width="45%">
+                            <div class="section-title">Current response details</div>
+                            <pre>Content-Type: text/html
+            Content-Length: browser generated
+            Server: Python socket server
+            Route: /about
+            Status: ready
+
+            This page explains the server in plain words.</pre>
+
+                            <br>
+
+                            <div class="section-title">What you should notice</div>
+                            <div class="small">
+                                This is not meant to look modern. It is meant to feel like a straightforward server page from
+                                the early web, where the output was simple and the code path was easy to follow.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="footer" colspan="2">Simple server page. No extra styling. Just the response.</td>
+                    </tr>
+                </table>
+            </body>
+            </html>
