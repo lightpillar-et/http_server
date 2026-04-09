@@ -4,6 +4,7 @@ from handlers import (
     handle_api_hello,
     handle_not_found,
     handle_bad_request,
+    handle_echo
 )
 
 
@@ -22,6 +23,9 @@ def route_request(request_data, malformed_request):
 
     elif method == "GET" and path == "/api/hello":
         return handle_api_hello()
+    
+    elif method == "POST" and path == "/echo":
+        return handle_echo(request_data)
 
     else:
         return handle_not_found()

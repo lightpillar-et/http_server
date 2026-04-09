@@ -1,5 +1,5 @@
 def handle_home():
-    return 200, "text/plain", "Home route"
+    return 200, "text/plain", "Home route \nHello From Server"
 
 
 def handle_about():
@@ -9,6 +9,8 @@ def handle_about():
 def handle_api_hello():
     return 200, "application/json", '{"message": "Hello"}'
 
+def handle_echo(request_data):
+    return 200, "text/plain", request_data["body"]
 
 def handle_not_found():
     return 404, "text/plain", "Not Found"

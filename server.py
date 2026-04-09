@@ -17,6 +17,31 @@ def accept_connection(server_socket):
 def read_request(connection_socket):
     raw_request_data = connection_socket.recv(1024)
 
+    while b"\r\n\r\n" not in raw_request_data:
+        more_data = connection_socket.recv(1024)
+        if not more_data:
+            break
+        raw_request_data += more_data
+
+    header_part, separator, body_part = raw_request_data.partition(b"\r\n\r\n")
+    headers_text = header_part.decode()
+
+    content_length = 0
+    header_lines = headers_text.split("\r\n")
+
+    for line in header_lines:
+        if line.lower().startswith("content-length:"):
+            content_length = int(line.split(":", 1)[1].strip())
+            break
+
+    while len(body_part) < content_length:
+        more_body_data = connection_socket.recv(1024)
+        if not more_body_data:
+            break
+        body_part += more_body_data
+
+    raw_request_data = header_part + separator + body_part
+
     print("----- RAW HTTP REQUEST -----")
     print(raw_request_data)
 
