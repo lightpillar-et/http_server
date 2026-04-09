@@ -2,6 +2,7 @@ import socket
 from request import parse_request
 from router import route_request
 from response import build_response
+from datetime import datetime
 
 host = "127.0.0.1"
 port = 8080
@@ -22,6 +23,15 @@ def read_request(connection_socket):
     request_text = raw_request_data.decode()
     return request_text
 
+def log_request(request_data, malformed_request, status_code):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    if malformed_request:
+        print(f"[{timestamp}] MALFORMED_REQUEST -> {status_code}")
+    else:
+        method = request_data["method"]
+        path = request_data["path"]
+        print(f"[{timestamp}] {method} {path} -> {status_code}")
 
 def send_response(connection_socket, response):
     connection_socket.send(response.encode())
@@ -37,8 +47,8 @@ connection_socket, client_address = accept_connection(server_socket)
 request_text = read_request(connection_socket)
 request_data, malformed_request = parse_request(request_text)
 status_code, content_type, response_body = route_request(request_data, malformed_request)
+log_request(request_data, malformed_request, status_code)
 response = build_response(status_code, content_type, response_body)
 send_response(connection_socket, response)
-
 connection_socket.close()
 server_socket.close()
